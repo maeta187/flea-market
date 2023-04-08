@@ -1,5 +1,5 @@
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
+import { NestFactory } from '@nestjs/core'
+import { AppModule } from './app.module'
 
 async function bootstrap() {
   const PORT = 3000
@@ -7,4 +7,4 @@ async function bootstrap() {
   await app.listen(PORT)
   console.log(`Server is now running on http://localhost:${PORT}`)
 }
-bootstrap();
+bootstrap()
