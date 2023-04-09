@@ -13,6 +13,11 @@ export class ItemsController {
     return this.itemsService.findAll()
   }
 
+  @Get(':id') // items/[id]
+  findById(@Param('id') id: string): Item {
+    return this.itemsService.findById(id)
+  }
+
   @Post()
   create(
     @Body('id') id: string,
