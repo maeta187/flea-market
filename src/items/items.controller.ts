@@ -5,6 +5,7 @@ import {
   Body,
   Param,
   Patch,
+  Delete
 } from '@nestjs/common'
 import { Item } from './item.model'
 import { ItemsService } from './items.service'
@@ -44,4 +45,8 @@ export class ItemsController {
     return this.itemsService.updateStatus(id)
   }
 
+  @Delete(':id')
+  delete(@Param('id') id: string) {
+    return this.itemsService.delete(id)
+  }
 }
