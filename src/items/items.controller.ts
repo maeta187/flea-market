@@ -1,4 +1,7 @@
-import { Controller, Get, Post, Body } from '@nestjs/common'
+import {
+  Controller,
+  Get,
+} from '@nestjs/common'
 import { Item } from './item.model'
 import { ItemsService } from './items.service'
 
@@ -6,7 +9,7 @@ import { ItemsService } from './items.service'
 export class ItemsController {
   constructor(private readonly itemsService: ItemsService) {}
   @Get()
-  findAll() {
+  findAll(): Item[] {
     return this.itemsService.findAll()
   }
 
