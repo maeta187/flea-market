@@ -7,9 +7,11 @@ import {
   Patch,
   Delete,
   ParseUUIDPipe,
+  NotFoundException
 } from '@nestjs/common'
 import { Item } from './item.model'
 import { ItemsService } from './items.service'
+import { CreateItemDto } from './dto/create-item.dto'
 
 @Controller('items')
 export class ItemsController {
@@ -21,6 +23,11 @@ export class ItemsController {
 
   @Get(':id') // items/[id]
   findById(@Param('id', ParseUUIDPipe) id: string): Item {
+    const found = this.itemsService.findById(id)
+    if (!found) {
+      throw new NotFoundException()
+    }
+    return found
   }
 
   @Post()
