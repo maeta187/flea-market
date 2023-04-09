@@ -17,4 +17,10 @@ export class ItemsService {
     this.items = [...this.items, item]
     return item
   }
+
+  updateStatus(id: string): Item {
+    const item = this.findById(id)
+    item.status = 'SOLD_OUT'
+    return item
+  }
 }
