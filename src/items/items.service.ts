@@ -10,7 +10,7 @@ export class ItemsService {
   }
 
   create(item: Item): Item {
-    this.items = { ...this.items, ...item }
+    this.items = [...this.items, item]
     return item
   }
 }
