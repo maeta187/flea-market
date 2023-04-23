@@ -6,8 +6,7 @@ import {
   Param,
   Patch,
   Delete,
-  ParseUUIDPipe,
-  NotFoundException
+  ParseUUIDPipe
 } from '@nestjs/common'
 import { Item } from '../entities/item.entity'
 import { ItemsService } from './items.service'
@@ -32,8 +31,8 @@ export class ItemsController {
   }
 
   @Patch(':id')
-  updateStatus(@Param('id', ParseUUIDPipe) id: string) {
-    return this.itemsService.updateStatus(id)
+  async updateStatus(@Param('id', ParseUUIDPipe) id: string): Promise<Item> {
+    return await this.itemsService.updateStatus(id)
   }
 
   @Delete(':id')

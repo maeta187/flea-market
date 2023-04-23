@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common'
+import { Injectable, NotFoundException } from '@nestjs/common'
 import { Item } from '../entities/item.entity'
 import { CreateItemDto } from './dto/create-item.dto'
 import { ItemRepository } from './items.repository'
@@ -24,10 +24,11 @@ export class ItemsService {
     return await this.itemRepository.createItem(createItemDto)
   }
 
-  updateStatus(id: string): Item {
-    const item = this.findById(id)
+  async updateStatus(id: string): Promise<Item> {
+    const item = await this.findById(id)
     item.status = 'SOLD_OUT'
-    return item
+    item.updatedAt = new Date().toISOString()
+    return await this.itemRepository.updateStatus(item)
   }
 
   delete(id: string): void {

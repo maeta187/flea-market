@@ -19,4 +19,9 @@ export class ItemRepository extends Repository<Item> {
 
     return item
   }
+
+  async updateStatus(item: Item): Promise<Item> {
+    return await this.save(item)
+  }
+
 }
