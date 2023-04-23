@@ -1,10 +1,11 @@
 import { Injectable } from '@nestjs/common'
-import { Item } from './item.model'
+import { Item } from '../entities/item.entity'
 import { CreateItemDto } from './dto/create-item.dto'
-import { v4 as uuid } from 'uuid'
+import { ItemRepository } from './items.repository'
 
 @Injectable()
 export class ItemsService {
+  constructor(private readonly itemRepository: ItemRepository) {}
   private items: Item[] = []
 
   findAll(): Item[] {
@@ -15,14 +16,8 @@ export class ItemsService {
     return this.items.find((item) => item.id === id)
   }
 
-  create(createItemDto: CreateItemDto): Item {
-    const item: Item = {
-      id: uuid(),
-      ...createItemDto,
-      status: 'ON_SALE'
-    }
-    this.items = [...this.items, item]
-    return item
+  async create(createItemDto: CreateItemDto): Promise<Item> {
+    return await this.itemRepository.createItem(createItemDto)
   }
 
   updateStatus(id: string): Item {
