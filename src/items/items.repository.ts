@@ -24,4 +24,7 @@ export class ItemRepository extends Repository<Item> {
     return await this.save(item)
   }
 
+  async deleteItem(id: string): Promise<void> {
+    await this.delete(id)
+  }
 }

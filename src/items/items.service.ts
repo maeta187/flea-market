@@ -31,7 +31,7 @@ export class ItemsService {
     return await this.itemRepository.updateStatus(item)
   }
 
-  delete(id: string): void {
-    this.items = this.items.filter((item) => item.id !== id)
+  async deleteItem(id: string): Promise<void> {
+    await this.itemRepository.delete(id)
   }
 }
