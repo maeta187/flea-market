@@ -8,8 +8,8 @@ export class ItemsService {
   constructor(private readonly itemRepository: ItemRepository) {}
   private items: Item[] = []
 
-  findAll(): Item[] {
-    return this.items
+  async findAll(): Promise<Item[]> {
+    return await this.itemRepository.find()
   }
 
   findById(id: string): Item {
