@@ -22,12 +22,8 @@ export class ItemsController {
   }
 
   @Get(':id') // items/[id]
-  findById(@Param('id', ParseUUIDPipe) id: string): Item {
-    const found = this.itemsService.findById(id)
-    if (!found) {
-      throw new NotFoundException()
-    }
-    return found
+  async findById(@Param('id', ParseUUIDPipe) id: string): Promise<Item> {
+    return await this.itemsService.findById(id)
   }
 
   @Post()
