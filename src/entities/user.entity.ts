@@ -1,4 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm'
+import { Item } from './item.entity'
+import { Exclude } from 'class-transformer'
 
 @Entity()
 export class User {
@@ -9,8 +11,12 @@ export class User {
   username: string
 
   @Column()
+  @Exclude({ toPlainOnly: true })
   password: string
 
   @Column()
   status: 'FREE' | 'PREMIUM'
+
+  @OneToMany(() => Item, (item) => item.user)
+  items: Item[]
 }
