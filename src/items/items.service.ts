@@ -20,8 +20,8 @@ export class ItemsService {
     return found
   }
 
-  async create(createItemDto: CreateItemDto): Promise<Item> {
-    return await this.itemRepository.createItem(createItemDto)
+  async create(createItemDto: CreateItemDto, user: User): Promise<Item> {
+    return await this.itemRepository.createItem(createItemDto, user)
   }
 
   async updateStatus(id: string): Promise<Item> {
