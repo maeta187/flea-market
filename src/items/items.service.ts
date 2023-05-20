@@ -44,6 +44,6 @@ export class ItemsService {
     if (item.userId !== user.id) {
       throw new BadRequestException('他人の商品を削除することはできません。')
     }
-    await this.itemRepository.delete(id)
+    await this.itemRepository.deleteItem(id)
   }
 }
